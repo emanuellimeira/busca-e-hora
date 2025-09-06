@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hora Global - Pesquisas e Horários Mundiais</title>
+    <title>Hora Global - Busca Universal</title>
     <style>
         * {
             margin: 0;
@@ -12,428 +12,371 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             min-height: 100vh;
-            background: linear-gradient(135deg, #1f2937 0%, #1e3a8a 50%, #000000 100%);
-            color: white;
-            line-height: 1.6;
+            padding: 20px;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
         
-        .header {
+        /* Seção de Busca */
+        .search-section {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        .search-title {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #374151, #1f2937);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .header h1 {
             font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .header p {
-            font-size: 1.1rem;
-            color: #d1d5db;
-        }
-        
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-        
-        @media (min-width: 1280px) {
-            .main-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        .card {
-            background: linear-gradient(135deg, #374151, #1f2937);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 2px solid #fbbf24;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .card h2 {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #fbbf24;
-        }
-        
-        .search-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .search-item {
-            background: linear-gradient(135deg, #4b5563, #374151);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #6b7280;
-        }
-        
-        .search-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #fbbf24;
-        }
-        
         .search-form {
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            align-items: center;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .search-input {
             flex: 1;
-            min-width: 200px;
-            padding: 12px 16px;
-            border: 2px solid #6b7280;
-            border-radius: 8px;
-            background: #1f2937;
-            color: white;
-            font-size: 1rem;
+            min-width: 300px;
+            padding: 15px 20px;
+            border: 2px solid #475569;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #1e293b;
+            color: #f1f5f9;
         }
         
         .search-input:focus {
-            outline: none;
-            border-color: #fbbf24;
-            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
         }
         
-        .search-button {
-            padding: 12px 24px;
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+        
+        .search-select {
+            padding: 15px 20px;
+            border: 2px solid #475569;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            background: #1e293b;
+            color: #f1f5f9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+        
+        .search-select:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+        
+        .search-select option {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+        
+        .search-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            min-width: 120px;
         }
         
-        .btn-google {
-            background: linear-gradient(135deg, #4285f4, #1a73e8);
-            color: white;
-        }
-        
-        .btn-youtube {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            color: white;
-        }
-        
-        .btn-twitter {
-            background: linear-gradient(135deg, #1da1f2, #0d8bd9);
-            color: white;
-        }
-        
-        .btn-instagram {
-            background: linear-gradient(135deg, #e4405f, #c13584);
-            color: white;
-        }
-        
-        .btn-tiktok {
-            background: linear-gradient(135deg, #000000, #ff0050);
-            color: white;
-        }
-        
-        .search-button:hover {
+        .search-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+        
+        /* Seção de Relógios */
+        .clocks-section {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        .clocks-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 30px;
         }
         
         .clock-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
         
         .clock-item {
-            background: linear-gradient(135deg, #4b5563, #374151);
-            padding: 20px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #334155, #475569);
+            border-radius: 15px;
+            padding: 25px;
             text-align: center;
-            border: 1px solid #6b7280;
             transition: all 0.3s ease;
+            border: 1px solid #64748b;
         }
         
         .clock-item:hover {
-            transform: scale(1.05);
-            border-color: #fbbf24;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: #60a5fa;
         }
         
         .clock-city {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
+            color: #f1f5f9;
             margin-bottom: 10px;
-            color: #fbbf24;
         }
         
         .clock-time {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #f3f4f6;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 5px;
             font-family: 'Courier New', monospace;
         }
         
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, #374151, #1f2937);
-            border-radius: 16px;
-            color: #d1d5db;
+        .clock-date {
+            font-size: 0.9rem;
+            color: #94a3b8;
         }
         
+        /* Responsividade */
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
             }
             
-            .header h1 {
+            .search-input,
+            .search-select,
+            .search-btn {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .search-title {
                 font-size: 2rem;
             }
             
-            .search-form {
-                flex-direction: column;
+            .clocks-title {
+                font-size: 1.5rem;
             }
             
-            .search-input {
-                min-width: 100%;
+            .clock-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-
+        <!-- Seção de Busca Universal -->
+        <div class="search-section">
+            <h1 class="search-title">Busca Universal</h1>
+            <form class="search-form" onsubmit="performSearch(event)">
+                <input 
+                    type="text" 
+                    id="searchQuery" 
+                    class="search-input" 
+                    placeholder="Digite sua busca..."
+                    required
+                >
+                <select id="searchService" class="search-select">
+                    <option value="google">Google</option>
+                    <option value="youtube">YouTube</option>
+                    <option value="twitter">X (Twitter)</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="pinterest">Pinterest</option>
+                    <option value="linkedin">LinkedIn</option>
+                </select>
+                <button type="submit" class="search-btn">Buscar</button>
+            </form>
+        </div>
         
-        <main class="main-grid">
-            <!-- Seção de Pesquisas -->
-            <section class="card">
-                <h2>🔍 Pesquisas Rápidas</h2>
-                <div class="search-section">
-                    <!-- Google Search -->
-                    <div class="search-item">
-                        <h3>Google</h3>
-                        <form class="search-form" onsubmit="searchGoogle(event)">
-                            <input type="text" id="googleQuery" class="search-input" placeholder="Digite sua pesquisa..." required>
-                            <button type="submit" class="search-button btn-google">Pesquisar</button>
-                        </form>
-                    </div>
-                    
-                    <!-- YouTube Search -->
-                    <div class="search-item">
-                        <h3>YouTube</h3>
-                        <form class="search-form" onsubmit="searchYouTube(event)">
-                            <input type="text" id="youtubeQuery" class="search-input" placeholder="Digite o que deseja assistir..." required>
-                            <button type="submit" class="search-button btn-youtube">Assistir</button>
-                        </form>
-                    </div>
-                    
-                    <!-- Twitter Search -->
-                    <div class="search-item">
-                        <h3>Twitter</h3>
-                        <form class="search-form" onsubmit="searchTwitter(event)">
-                            <input type="text" id="twitterQuery" class="search-input" placeholder="Digite o que deseja encontrar..." required>
-                            <button type="submit" class="search-button btn-twitter">Buscar</button>
-                        </form>
-                    </div>
-                    
-                    <!-- Instagram Search -->
-                    <div class="search-item">
-                        <h3>Instagram</h3>
-                        <form class="search-form" onsubmit="searchInstagram(event)">
-                            <input type="text" id="instagramQuery" class="search-input" placeholder="Digite o perfil ou hashtag..." required>
-                            <button type="submit" class="search-button btn-instagram">Explorar</button>
-                        </form>
-                    </div>
-                    
-                    <!-- TikTok Search -->
-                    <div class="search-item">
-                        <h3>TikTok</h3>
-                        <form class="search-form" onsubmit="searchTikTok(event)">
-                            <input type="text" id="tiktokQuery" class="search-input" placeholder="Digite o usuário ou hashtag..." required>
-                            <button type="submit" class="search-button btn-tiktok">Descobrir</button>
-                        </form>
-                    </div>
+        <!-- Seção de Relógios Mundiais -->
+        <div class="clocks-section">
+            <h2 class="clocks-title">Horários Mundiais</h2>
+            <div class="clock-grid">
+                <div class="clock-item">
+                    <div class="clock-city">Shanghai</div>
+                    <div class="clock-time" id="shanghai-time">--:--:--</div>
+                    <div class="clock-date" id="shanghai-date">--/--/----</div>
                 </div>
-            </section>
-            
-            <!-- Seção de Horários Mundiais -->
-            <section class="card">
-                <h2>🕐 Horários Mundiais</h2>
-                <div class="clock-grid">
-                    <div class="clock-item">
-                        <div class="clock-city">🇨🇳 Xangai</div>
-                        <div class="clock-time" id="shanghai-time">--:--:--</div>
-                    </div>
-                    <div class="clock-item">
-                        <div class="clock-city">🇦🇪 Dubai</div>
-                        <div class="clock-time" id="dubai-time">--:--:--</div>
-                    </div>
-                    <div class="clock-item">
-                        <div class="clock-city">🇬🇧 Londres</div>
-                        <div class="clock-time" id="london-time">--:--:--</div>
-                    </div>
-                    <div class="clock-item">
-                        <div class="clock-city">🇧🇷 São Paulo</div>
-                        <div class="clock-time" id="saopaulo-time">--:--:--</div>
-                    </div>
-                    <div class="clock-item">
-                        <div class="clock-city">🇺🇸 Nova York</div>
-                        <div class="clock-time" id="newyork-time">--:--:--</div>
-                    </div>
-                    <div class="clock-item">
-                        <div class="clock-city">🇨🇴 Bogotá</div>
-                        <div class="clock-time" id="bogota-time">--:--:--</div>
-                    </div>
+                <div class="clock-item">
+                    <div class="clock-city">Dubai</div>
+                    <div class="clock-time" id="dubai-time">--:--:--</div>
+                    <div class="clock-date" id="dubai-date">--/--/----</div>
                 </div>
-            </section>
-        </main>
-        
-
+                <div class="clock-item">
+                    <div class="clock-city">Londres</div>
+                    <div class="clock-time" id="london-time">--:--:--</div>
+                    <div class="clock-date" id="london-date">--/--/----</div>
+                </div>
+                <div class="clock-item">
+                    <div class="clock-city">São Paulo</div>
+                    <div class="clock-time" id="saopaulo-time">--:--:--</div>
+                    <div class="clock-date" id="saopaulo-date">--/--/----</div>
+                </div>
+                <div class="clock-item">
+                    <div class="clock-city">Nova York</div>
+                    <div class="clock-time" id="newyork-time">--:--:--</div>
+                    <div class="clock-date" id="newyork-date">--/--/----</div>
+                </div>
+                <div class="clock-item">
+                    <div class="clock-city">Bogotá</div>
+                    <div class="clock-time" id="bogota-time">--:--:--</div>
+                    <div class="clock-date" id="bogota-date">--/--/----</div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script>
-        // Funções de pesquisa
-        function searchGoogle(event) {
-            event.preventDefault();
-            const query = document.getElementById('googleQuery').value;
-            if (query.trim()) {
-                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-            }
-        }
+        // Configuração dos fusos horários
+        const timeZones = {
+            shanghai: { elementId: 'shanghai', timeZone: 'Asia/Shanghai' },
+            dubai: { elementId: 'dubai', timeZone: 'Asia/Dubai' },
+            london: { elementId: 'london', timeZone: 'Europe/London' },
+            saopaulo: { elementId: 'saopaulo', timeZone: 'America/Sao_Paulo' },
+            newyork: { elementId: 'newyork', timeZone: 'America/New_York' },
+            bogota: { elementId: 'bogota', timeZone: 'America/Bogota' }
+        };
         
-        function searchYouTube(event) {
+        // Função de busca universal
+        function performSearch(event) {
             event.preventDefault();
-            const query = document.getElementById('youtubeQuery').value;
-            if (query.trim()) {
-                window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`, '_blank');
+            const query = document.getElementById('searchQuery').value.trim();
+            const service = document.getElementById('searchService').value;
+            
+            if (!query) return;
+            
+            let url = '';
+            const encodedQuery = encodeURIComponent(query);
+            
+            switch (service) {
+                case 'google':
+                    url = `https://www.google.com/search?q=${encodedQuery}`;
+                    break;
+                case 'youtube':
+                    url = `https://www.youtube.com/results?search_query=${encodedQuery}`;
+                    break;
+                case 'twitter':
+                    url = `https://twitter.com/search?q=${encodedQuery}`;
+                    break;
+                case 'instagram':
+                    if (query.startsWith('#')) {
+                        url = `https://www.instagram.com/explore/tags/${encodeURIComponent(query.substring(1))}/`;
+                    } else {
+                        url = `https://www.instagram.com/${encodedQuery}/`;
+                    }
+                    break;
+                case 'tiktok':
+                    if (query.startsWith('#')) {
+                        url = `https://www.tiktok.com/tag/${encodeURIComponent(query.substring(1))}`;
+                    } else if (query.startsWith('@')) {
+                        url = `https://www.tiktok.com/${encodedQuery}`;
+                    } else {
+                        url = `https://www.tiktok.com/@${encodedQuery}`;
+                    }
+                    break;
+                case 'pinterest':
+                    url = `https://www.pinterest.com/search/pins/?q=${encodedQuery}`;
+                    break;
+                case 'linkedin':
+                    url = `https://www.linkedin.com/search/results/all/?keywords=${encodedQuery}`;
+                    break;
             }
-        }
-        
-        function searchTwitter(event) {
-            event.preventDefault();
-            const query = document.getElementById('twitterQuery').value;
-            if (query.trim()) {
-                window.open(`https://twitter.com/search?q=${encodeURIComponent(query)}`, '_blank');
-            }
-        }
-        
-        function searchInstagram(event) {
-            event.preventDefault();
-            const query = document.getElementById('instagramQuery').value;
-            if (query.trim()) {
-                if (query.startsWith('#')) {
-                    window.open(`https://www.instagram.com/explore/tags/${encodeURIComponent(query.substring(1))}/`, '_blank');
-                } else {
-                    window.open(`https://www.instagram.com/${encodeURIComponent(query)}/`, '_blank');
-                }
-            }
-        }
-        
-        function searchTikTok(event) {
-            event.preventDefault();
-            const query = document.getElementById('tiktokQuery').value;
-            if (query.trim()) {
-                if (query.startsWith('#')) {
-                    window.open(`https://www.tiktok.com/tag/${encodeURIComponent(query.substring(1))}`, '_blank');
-                } else if (query.startsWith('@')) {
-                    window.open(`https://www.tiktok.com/${encodeURIComponent(query)}`, '_blank');
-                } else {
-                    window.open(`https://www.tiktok.com/@${encodeURIComponent(query)}`, '_blank');
-                }
+            
+            if (url) {
+                window.open(url, '_blank');
             }
         }
         
         // Função para atualizar horários
         function updateClocks() {
-            const now = new Date();
-            
-            // Definir fusos horários corretos
-            const timeZones = {
-                'shanghai-time': 'Asia/Shanghai',
-                'london-time': 'Europe/London',
-                'newyork-time': 'America/New_York',
-                'saopaulo-time': 'America/Sao_Paulo',
-                'bogota-time': 'America/Bogota',
-                'dubai-time': 'Asia/Dubai'
-            };
-            
-            // Atualizar cada relógio
-            Object.entries(timeZones).forEach(([elementId, timeZone]) => {
+            Object.entries(timeZones).forEach(([key, config]) => {
                 try {
-                    const timeString = now.toLocaleTimeString('pt-BR', {
-                        timeZone: timeZone,
-                        hour12: false,
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit'
-                    });
+                    const now = new Date();
+                    const timeElement = document.getElementById(`${config.elementId}-time`);
+                    const dateElement = document.getElementById(`${config.elementId}-date`);
                     
-                    const element = document.getElementById(elementId);
-                    if (element) {
-                        element.textContent = timeString;
+                    if (timeElement && dateElement) {
+                        const timeString = now.toLocaleTimeString('pt-BR', {
+                            timeZone: config.timeZone,
+                            hour12: false,
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit'
+                        });
+                        
+                        const dateString = now.toLocaleDateString('pt-BR', {
+                            timeZone: config.timeZone,
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                        });
+                        
+                        timeElement.textContent = timeString;
+                        dateElement.textContent = dateString;
                     }
                 } catch (error) {
-                    console.error(`Erro ao atualizar ${elementId}:`, error);
-                    const element = document.getElementById(elementId);
-                    if (element) {
-                        element.textContent = '--:--:--';
-                    }
+                    console.error(`Erro ao atualizar horário de ${key}:`, error);
                 }
             });
         }
         
         // Inicializar relógios
+        updateClocks();
+        setInterval(updateClocks, 1000);
+        
+        // Foco automático no campo de busca
         document.addEventListener('DOMContentLoaded', function() {
-            updateClocks();
-            setInterval(updateClocks, 1000);
-            
-            // Adicionar efeitos de hover
-            const cards = document.querySelectorAll('.card, .clock-item, .search-item');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transition = 'all 0.3s ease';
-                });
-            });
-            
-            console.log('Hora Global carregado com sucesso!');
+            document.getElementById('searchQuery').focus();
         });
         
-        // Permitir pesquisa com Enter
-        document.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                const activeElement = document.activeElement;
-                if (activeElement && activeElement.classList.contains('search-input')) {
-                    const form = activeElement.closest('form');
-                    if (form) {
-                        form.dispatchEvent(new Event('submit'));
-                    }
-                }
+        // Atalho de teclado para busca rápida
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === '/') {
+                event.preventDefault();
+                document.getElementById('searchQuery').focus();
             }
         });
     </script>
