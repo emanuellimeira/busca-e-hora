@@ -241,9 +241,19 @@
                     <div class="clock-date" id="shanghai-date">--/--/----</div>
                 </div>
                 <div class="clock-item">
+                    <div class="clock-city">Nova Delhi</div>
+                    <div class="clock-time" id="newdelhi-time">--:--:--</div>
+                    <div class="clock-date" id="newdelhi-date">--/--/----</div>
+                </div>
+                <div class="clock-item">
                     <div class="clock-city">Dubai</div>
                     <div class="clock-time" id="dubai-time">--:--:--</div>
                     <div class="clock-date" id="dubai-date">--/--/----</div>
+                </div>
+                <div class="clock-item">
+                    <div class="clock-city">Madrid</div>
+                    <div class="clock-time" id="madrid-time">--:--:--</div>
+                    <div class="clock-date" id="madrid-date">--/--/----</div>
                 </div>
                 <div class="clock-item">
                     <div class="clock-city">Londres</div>
@@ -265,6 +275,11 @@
                     <div class="clock-time" id="bogota-time">--:--:--</div>
                     <div class="clock-date" id="bogota-date">--/--/----</div>
                 </div>
+                <div class="clock-item">
+                    <div class="clock-city">Cidade do México</div>
+                    <div class="clock-time" id="mexicocity-time">--:--:--</div>
+                    <div class="clock-date" id="mexicocity-date">--/--/----</div>
+                </div>
             </div>
         </div>
     </div>
@@ -277,7 +292,10 @@
             london: { elementId: 'london', timeZone: 'Europe/London' },
             saopaulo: { elementId: 'saopaulo', timeZone: 'America/Sao_Paulo' },
             newyork: { elementId: 'newyork', timeZone: 'America/New_York' },
-            bogota: { elementId: 'bogota', timeZone: 'America/Bogota' }
+            bogota: { elementId: 'bogota', timeZone: 'America/Bogota' },
+            madrid: { elementId: 'madrid', timeZone: 'Europe/Madrid' },
+            newdelhi: { elementId: 'newdelhi', timeZone: 'Asia/Kolkata' },
+            mexicocity: { elementId: 'mexicocity', timeZone: 'America/Mexico_City' }
         };
         
         // Função de busca universal
